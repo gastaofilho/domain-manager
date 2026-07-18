@@ -40,7 +40,7 @@ export async function POST(request: Request) {
       return NextResponse.json(
         {
           message:
-            "Os dados enviados são inválidos.",
+            "Verifique os campos informados. O domínio deve estar em um formato válido, como exemplo.com.br.",
         },
         {
           status: 400,

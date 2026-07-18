@@ -66,8 +66,7 @@ export function validateDomainData(
   >;
 
   return (
-    typeof domainData.name === "string" &&
-    domainData.name.trim().length > 0 &&
+    isValidDomainName(domainData.name) &&
     typeof domainData.clientName === "string" &&
     domainData.clientName.trim().length > 0 &&
     isValidDateString(
@@ -75,4 +74,22 @@ export function validateDomainData(
     ) &&
     isDomainStatus(domainData.status)
   );
+
+  function isValidDomainName(
+    value: unknown
+  ): value is string {
+    if (typeof value !== "string") {
+      return false;
+    }
+
+    const domain = value.trim().toLowerCase();
+
+    const domainPattern =
+      /^(?!-)(?:[a-z0-9-]{1,63}\.)+[a-z]{2,63}$/i;
+
+    return (
+      domain.length <= 253 &&
+      domainPattern.test(domain)
+    );
+  }
 }

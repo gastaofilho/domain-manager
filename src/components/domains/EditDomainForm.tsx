@@ -20,6 +20,8 @@ export function EditDomainForm({
 }: EditDomainFormProps) {
   const router = useRouter();
 
+  const [errorMessage, setErrorMessage] = useState("");
+
   const [isSubmitting, setIsSubmitting] =
     useState(false);
 
@@ -39,7 +41,7 @@ export function EditDomainForm({
     } catch (error) {
       console.error(error);
 
-      alert(
+      setErrorMessage(
         error instanceof Error
           ? error.message
           : "Não foi possível atualizar o domínio."
@@ -61,6 +63,7 @@ export function EditDomainForm({
       initialValues={initialValues}
       submitLabel="Salvar alterações"
       isSubmitting={isSubmitting}
+      errorMessage={errorMessage}
       onSubmit={handleUpdateDomain}
     />
   );

@@ -98,7 +98,7 @@ export async function PUT(
     if (!validateDomainData(requestData)) {
       return NextResponse.json(
         {
-          message: "Os dados enviados são inválidos.",
+          message: "Verifique os campos informados. O domínio deve estar em um formato válido, como exemplo.com.br.",
         },
         {
           status: 400,
